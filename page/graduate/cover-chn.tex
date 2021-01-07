@@ -1,0 +1,95 @@
+\thispagestyle{cover}
+
+\begin{center}
+    \zihao{-4} \songti
+    \begin{tabularx}{\textwidth}{l p{3.5cm} >{\raggedleft}X p{3.5cm}}
+        分类号：           & \uline{\hfill  \hfill}  &
+        单位代码：         & \uline{\hfill 10033 \hfill} \\
+        密{\quad}级：      & \uline{\hfill \hfill} &
+        学{\quad\quad}号： & \uline{\hfill 1835200835Z1007 \hfill}
+    \end{tabularx}
+\end{center}
+
+\vspace{-10pt}
+
+\begin{center}
+    \includegraphics[width=0.3\paperwidth]{logo/中国传媒大学字体.png}
+\end{center}
+
+\vspace{-40pt}
+
+\begin{center}
+    \zihao{-1} \songti%
+    \TitleTypeNameCover
+\end{center}
+
+\vspace{4pt}
+
+\begin{center}
+    \includegraphics[width=0.15\paperwidth]{logo/中国传媒大学校徽.png}
+\end{center}
+
+\vspace{7pt}
+
+\begin{center}
+    \bfseries \zihao{-2}
+    \begin{tabularx}{1.0\textwidth}{>{\songti}l X<{\centering}}
+        % If titles are too long for one row, please manually hardcode them in
+        % multiple lines, as the english title example here.
+        中文论文题目：      &  \uline{\hfill \songti 基于知识图谱的可解释性推荐系统 \hfill} \\
+                          %&  \uline{\hfill 荐系统 \hfill} \\
+        \\
+        英文论文题目：      &  \uline{\hfill Knowledge Graph-based Explainable \hfill} 
+        \\
+                          &  \uline{\hfill Recommendation System          \hfill} \\
+    \end{tabularx}
+\end{center}
+
+\vskip 20pt
+
+\begin{center}
+    \zihao{4}
+    \begin{tabularx}{.6\textwidth}{>{\songti}l >{\songti \bfseries}X<{\centering}}
+        \ifthenelse{\equal{\BlindReview}{true}}
+        {
+        中文论文题目：      &  \uline{\hfill \songti 基于知识图谱的可解释性推 \hfill} \\
+            申请人姓名： & \uline{\hfill 张玉娟 \hfill} \\
+            指导教师：   & \uline{\hfill 周菁 \hfill} \\
+            %合作导师：   &  \uline{\hfill} \\
+            \ifthenelse{\equal{\Type}{design}}
+            {%
+                专业学位类别：  &  \uline{\hfill} \\
+                专业学位领域：  &  \uline{\hfill} \\
+            }
+            {
+                专业名称：  &  \uline{\hfill 软件工程技术 \hfill} \\
+                研究方向：  &  \uline{\hfill 移动与互联网络 \hfill} \\
+            }
+            所在学院：   &  \uline{\hfill 计算机与网络空间安全学院 \hfill} \\
+        }
+        {%
+            申请人姓名： & \uline{\hfill \StudentName \hfill} \\
+            指导教师：   & \uline{\hfill \AdvisorName \hfill} \\
+            %合作导师：   &  \uline{\hfill \ColaboratorName \hfill} \\
+            \ifthenelse{\equal{\Type}{design}}
+            {%
+                专业学位类别：  &  \uline{\hfill \Major \hfill} \\
+                专业学位领域：  &  \uline{\hfill \Topic \hfill} \\
+            }
+            {%
+                专业名称：  &  \uline{\hfill \Major \hfill} \\
+                研究方向：  &  \uline{\hfill \Topic \hfill} \\
+            }
+            所在学院：   &  \uline{\hfill \Department \hfill} \\
+        }
+    \end{tabularx}
+\end{center}
+
+\vskip 15pt
+
+\begin{center}
+    \zihao{-3} \bfseries
+    \begin{tabularx}{.5\textwidth}{>{\songti}l >{\songti}X<{\centering}}
+        论文递交日期 & \uline{\hfill \SubmitDate \hfill}
+    \end{tabularx}
+\end{center}

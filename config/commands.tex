@@ -1,0 +1,260 @@
+% common commands
+\makeatletter
+\newcommand{\cleardoublestylepage}[1]
+{
+    \clearpage
+    \if@twoside
+        \ifodd\c@page
+            % do nothing
+        \else
+            \thispagestyle{#1} ~
+            \newpage
+            \thispagestyle{#1}
+        \fi
+    \fi
+}
+\makeatother
+
+\newcommand{\bful}[1]{{\bfseries\uline{#1}}}
+
+% Commands to input body pages
+\ifthenelse{\equal{\Degree}{undergraduate}}
+{
+    % undergraduate
+    \newcommand{\inputpage}[1]{\input{./page/undergraduate/#1}}
+    \newcommand{\inputbody}[1]{\input{./body/undergraduate/#1}}
+
+    \newcommand{\chapternonum}[1]
+    {
+        \phantomsection
+        \addcontentsline{toc}{chapter}{#1}
+        \begin{center}
+            \bfseries \zihao{3} #1	
+        \end{center}	
+        \setcounter{section}{0}
+    }
+
+    \newcommand{\sectionnonum}[1]
+    {
+        \phantomsection
+        \addcontentsline{toc}{section}{#1}
+        \begin{center}
+            \bfseries \zihao{3} #1	
+        \end{center}	
+        \setcounter{subsection}{0}
+    }
+}
+{
+    % graduate
+    \newcommand{\checkandinput}[2]
+    {
+        % Directory structure:
+        % graduate/undergraduate            [Degree     ] [required        ]
+        % |-- master/doctor                 [GradLevel  ] [optional        ]
+        %     |-- general/cs/math/...       [MajorFormat] [optional        ]
+        %         |-- cover.tex/toc.tex/... [TeX Files  ] [template defined]
+        %
+        % Search from bottom-level to top-level:
+        % E.g:
+        %     With such dir:
+        %     graduate
+        %     |-- cover.tex
+        %     |-- toc.tex
+        %     |-- abstract.tex
+        %     |-- master
+        %         |-- toc.tex
+        %         |-- math
+        %             |-- abstract.tex
+        %     The input files are:
+        %         graduate/cover.tex
+        %         graduate/master/toc.tex
+        %         graduate/master/math/abstract.tex
+        \IfFileExists{./#1/graduate/\GradLevel/\MajorFormat/#2}
+        {
+            \input{./#1/graduate/\GradLevel/\MajorFormat/#2}
+        }
+        {
+            \IfFileExists{./#1/graduate/\GradLevel/#2}
+            {
+                \input{./#1/graduate/\GradLevel/#2}
+            }
+            {
+                \input{./#1/graduate/#2}
+            }
+        }
+    }
+
+    \newcommand{\inputpage}[1]
+    {
+        \checkandinput{page}{#1}
+    }
+    
+    
+    \newcommand{\inputbody}[1]
+    {
+        \input{./body/graduate/#1}
+    }
+
+    \newcommand{\chapternonum}[1]
+    {
+        \phantomsection
+        \addcontentsline{toc}{chapter}{#1}
+        \markboth{#1}{#1}
+        \chapter*{#1}
+    }
+
+
+    \newcommand{\chapternonumcenter}[1]
+    {
+        \phantomsection
+        \addcontentsline{toc}{chapter}{#1}
+        \markboth{#1}{#1}
+        % \chapter*{\centerline{#1}}
+        % \begin{center}
+        %     \zihao{-4}
+        %     \chapter*{\centerline{#1}}
+        % \end{center}
+    }
+
+    \newcommand{\sectionnonum}[1]
+    {
+        \phantomsection
+        \addcontentsline{toc}{section}{#1}
+        \markboth{#1}{#1}
+        \section*{#1}
+    }
+}
+
+\ifthenelse{\equal{\Degree}{undergraduate}}
+{
+\newcommand{\signature}[1]
+{
+    \begin{flushright}
+        \bfseries \zihao{-4}
+        #1 \underline{\multido{}{5}{\quad}} \\
+        \quad 年 \quad 月 \quad 日
+    \end{flushright}
+}
+
+\DeclareDocumentCommand{\finaleval}{O{~} O{~} O{~} O{~} O{~}}
+{
+    \begin{table}[H]
+        \centering \bfseries
+        \begin{tabularx}{\textwidth}{|>{\fangsong}c
+                                     |>{\fangsong}X<{\centering}
+                                     |>{\fangsong}X<{\centering}
+                                     |>{\fangsong}X<{\centering}
+                                     |>{\fangsong}X<{\centering}
+                                     |>{\fangsong}c|}
+            \hline
+            \makecell{成绩\\比例}
+            & \makecell{\ifthenelse{\equal{\Type}{thesis}}{文献综述}{中期报告} \\（10\%）}
+            & \makecell{开题报告\\（15\%）}
+            & \makecell{外文翻译\\（5\%）}
+            & \ifthenelse{\equal{\Type}{thesis}}{毕业论文质量及答辩（70\%）}{毕业设计质量及答辩（70\%）}
+            & \makecell{总评\\成绩} \\
+
+            \hline
+            \multirow{2}*{分值}
+            & \multirow{2}*{\zihao{4}#1}
+            & \multirow{2}*{\zihao{4}#2}
+            & \multirow{2}*{\zihao{4}#3}
+            & \multirow{2}*{\zihao{4}#4}
+            & \multirow{2}*{\zihao{4}#5} \\
+
+            ~ & ~ & ~ & ~ & ~ & ~ \\
+            \hline
+        \end{tabularx}
+    \end{table}
+}
+
+% `design` commands
+\DeclareDocumentCommand{\designproposaleval}{O{~} O{~}}
+{
+    \begin{flushright}
+        \begin{tabular}{| >{\fangsong \zihao{4}}c
+                        | >{\fangsong \zihao{5}}c
+                        | >{\fangsong \zihao{5}}c |}
+            \hline
+            \multirow{2}*{成绩比例}
+            & 开题报告
+            & 外文翻译 \\
+
+            ~
+            & 占（15\%）
+            & 占（5\%） \\
+
+            \hline
+
+            \multirow{2}*{分值}
+            & \multirow{2}*{\zihao{4}#1}
+            & \multirow{2}*{\zihao{4}#2} \\
+            
+            ~
+            & ~
+            & ~ \\
+            \hline
+        \end{tabular}
+    \end{flushright}
+}
+
+\DeclareDocumentCommand{\designmidcheckeval}{O{~}}
+{
+    \begin{flushright}
+        \begin{tabular}{| >{\fangsong \zihao{4}}c
+                        | >{\fangsong \zihao{5}}c |}
+            \hline
+            \multirow{2}*{成绩比例}
+            & 中期报告 \\
+
+            ~
+            & （10\%） \\
+
+            \hline
+
+            \multirow{2}*{分值}
+            & \multirow{2}*{\zihao{4}#1} \\
+
+            ~
+            & ~ \\
+            \hline
+        \end{tabular}
+    \end{flushright}
+}
+
+% `thesis` commands
+\DeclareDocumentCommand{\thesisproposaleval}{O{~} O{~} O{~}}
+{
+    \begin{flushright}
+        \begin{tabular}{| >{\fangsong \zihao{4}}c
+                        | >{\fangsong \zihao{5}}c
+                        | >{\fangsong \zihao{5}}c
+                        | >{\fangsong \zihao{5}}c |}
+            \hline
+            \multirow{2}*{成绩比例}
+            & 文献综述
+            & 开题报告
+            & 外文翻译 \\
+
+            ~
+            & 占（10\%）
+            & 占（15\%）
+            & 占（5\%） \\
+
+            \hline
+
+            \multirow{2}*{分值}
+            & \multirow{2}*{\zihao{4}#1}
+            & \multirow{2}*{\zihao{4}#2}
+            & \multirow{2}*{\zihao{4}#3} \\
+
+            ~
+            & ~
+            & ~
+            & ~ \\
+            \hline
+        \end{tabular}
+    \end{flushright}
+}
+}
+{}
