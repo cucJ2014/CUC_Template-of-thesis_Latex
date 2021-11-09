@@ -1,0 +1,50 @@
+% 编译方式：xelatex->biber->xelatex->xelatex
+\documentclass[
+    PrintFilePath   = false,
+    StudentName     = 王同学,           % 填写姓名
+    StudentID       = 183520083511111, % 填写学号
+    AdvisorName     = 王老师,           % 填写导师名称
+    Grade           = 2014,            
+    Major           = 软件工程技术,      % 填写专业名称
+    Department      = 计算机与网络空间安全学院, % 填写学院名称
+    SubmitDate      = 2021.03.03,      % 填写论文提交日期
+    MajorFormat     = general,
+    Degree          = graduate,        
+    Type            = thesis,          
+    Period          = final,           
+    BlindReview     = false,          
+    Language        = chinese,        
+    GradLevel       = master, 
+    Topic           = 移动与互联网络,     % 填写研究方向
+    Title           = 基于知识图谱的可解释性推荐系统,  % 填写中文论文题目
+    TitleEng        = {{Ignore}} % 封面中的题目由于字符太长，请重新在“./page/graduate/cover-chn.tex”中进行填写
+]{cucthesis}
+
+\newcommand{\inputgraduate}
+{
+    \coverstyle
+    \inputpage{cover}
+
+    \prevstyle
+    \inputpage{previous}
+    \inputpage{toc}
+    
+    % Main contents
+    \bodystyle
+    \inputbody{content}
+
+    % Post part
+    \poststyle
+    \inputbody{post}
+}
+
+\begin{document}
+
+\ifthenelse{\equal{\Degree}{undergraduate}}
+{
+    % \inputundergraduate{}
+}
+{
+    \inputgraduate{}
+}
+\end{document}
