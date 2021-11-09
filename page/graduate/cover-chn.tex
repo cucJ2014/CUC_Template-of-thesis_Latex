@@ -1,0 +1,134 @@
+\thispagestyle{cover}
+
+%==================================== 盲审封面
+% \begin{center}
+%     \zihao{-0}
+%     \heiti
+%     \bfseries
+%         中国传媒大学
+
+%         硕士学位论文
+% \end{center}
+% \begin{center}
+%     \zihao{-2}
+%     \fangsong
+%         （匿名评阅论文封面）
+% \end{center}
+% \vspace{7pt}
+% \begin{flushleft}
+%     \zihao{3}
+%         论文题目：\Title \\
+%         ~\\
+%         English Title：A Knowledge Graph-Based Explainable Recommender \\ 
+%         System
+% \end{flushleft}
+
+% ~\\
+% \begin{flushleft}
+%     \zihao{-3}
+%     \fangsong
+%     \linespread{2}
+%     专业名称：软件工程技术 \\
+%     研究方向：移动与互联网络 \\
+%     论文编号： \\
+% \end{flushleft}
+
+%==================================== 正式提交封面
+\begin{center}
+    \zihao{-4} \songti
+    \begin{tabularx}{\textwidth}{l p{3.5cm} >{\raggedleft}X p{3.5cm}}
+        分类号：           & \uline{\hfill  \hfill}  &
+        单位代码：         & \uline{\hfill 10033 \hfill} \\
+        密{\quad}级：      & \uline{\hfill \hfill} &
+        学{\quad\quad}号： & \uline{\hfill \StudentID \hfill}
+    \end{tabularx}
+\end{center}
+
+\vspace{-10pt}
+
+\begin{center}
+    \includegraphics[width=0.3\paperwidth]{logo/中国传媒大学字体.png}
+\end{center}
+
+\vspace{-40pt}
+
+\begin{center}
+    \zihao{-1} \songti
+    \TitleTypeNameCover
+\end{center}
+
+\vspace{4pt}
+
+\begin{center}
+    \includegraphics[width=0.15\paperwidth]{logo/中国传媒大学校徽.png}
+\end{center}
+
+\vspace{7pt}
+
+\begin{center}
+    \zihao{-3}
+    \bfseries
+    \begin{tabularx}{0.85\textwidth}{>{\songti \zihao{-3}}l >{\songti \zihao{-3}}X<{\centering}}
+        % 在这里填写中文、英文论文题目
+        中文论文题目：      &  \uline{\hfill \songti \zihao{-3} {\Title } \zihao{-3} \hfill} \\
+        \\
+        英文论文题目：      &  \uline{\hfill \zihao{-3} {A Knowledge Graph based Explainable} \hfill} 
+        \\
+                          &  \uline{\hfill \zihao{-3} {Recommender System}          \hfill} \\
+    \end{tabularx}
+\end{center} 
+
+\vskip 20pt
+
+\begin{center}
+    \zihao{4}
+    \begin{tabularx}{.6\textwidth}{>{\songti \zihao{4} }l >{\songti \zihao{4} \bfseries}X<{\centering}}
+        \songti
+        \zihao{4}
+        \ifthenelse{\equal{\BlindReview}{true}}
+        {
+        % 中文论文题目：      &  \uline{\hfill \songti  \hfill} \\
+            申请人姓名： & \uline{\hfill \songti    \hfill} \\
+            \\
+            指导教师：   & \uline{\hfill \songti    \hfill} \\
+            \\
+            %合作导师：   &  \uline{\hfill} \\
+            \ifthenelse{\equal{\Type}{design}}
+            {%
+                专业学位类别：  &  \uline{\hfill} \\
+                专业学位领域：  &  \uline{\hfill} \\
+            }
+            {
+                专业名称：  &  \uline{\hfill \songti  \hfill} \\
+                \\
+                研究方向：  &  \uline{\hfill  \songti  \hfill} \\
+                \\
+            }
+            所在学院：   &  \uline{\hfill   \hfill} \\
+        }
+        {%
+            申请人姓名： & \uline{\hfill \songti \StudentName \hfill} \\\specialrule{0em}{3.5pt}{3.5pt}
+            指导教师：   & \uline{\hfill \songti \AdvisorName \hfill} \\\specialrule{0em}{3.5pt}{3.5pt}
+            %合作导师：   &  \uline{\hfill \ColaboratorName \hfill} \\
+            \ifthenelse{\equal{\Type}{design}}
+            {%
+                专业学位类别：  &  \uline{\hfill \songti \Major \hfill} \\\specialrule{0em}{3.5pt}{3.5pt}
+                专业学位领域：  &  \uline{\hfill \songti \Topic \hfill} \\\specialrule{0em}{3.5pt}{3.5pt}
+            }
+            {%
+                专业名称：  &  \uline{\hfill \songti \Major \hfill} \\\specialrule{0em}{3.5pt}{3.5pt}
+                研究方向：  &  \uline{\hfill \songti \Topic \hfill} \\\specialrule{0em}{3.5pt}{3.5pt}
+            }
+            所在学院：   &  \uline{\hfill \songti \Department \hfill} \\\specialrule{0em}{3.5pt}{3.5pt}
+        }
+    \end{tabularx}
+\end{center}
+
+\vskip 15pt
+
+\begin{center}
+    \zihao{-3} \bfseries
+    \begin{tabularx}{.5\textwidth}{>{\songti \zihao{4}}l >{\songti \zihao{4}}X<{\centering}}
+        论文提交日期 & \uline{\hfill \SubmitDate \hfill}
+    \end{tabularx}
+\end{center}
