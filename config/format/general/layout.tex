@@ -1,0 +1,188 @@
+% 1.5 linespread, using Microsoft Word's rule
+\linespread{1.5}
+
+% Enable subsubsection's numbering
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+% Cover
+\fancypagestyle{cover}
+{
+    \fancyhead{}
+    \fancyfoot{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\ifthenelse{\equal{\Degree}{undergraduate}}
+{
+    % Common header & footer
+    \newcommand{\commonhead}
+    {
+        \fancyhead{}
+        \fancyhead[EL]{\zihao{-5} \TitleTypeName}
+        \fancyhead[OR]{\zihao{-5} \Title}
+        \renewcommand{\headrulewidth}{0.6pt}
+    }
+    % Common page header & footer
+    \fancypagestyle{common}
+    {
+        \commonhead{}
+        \fancyfoot{}
+        \fancyfoot[OC,EC]{\zihao{-5} \thepage}
+    }
+    % Previous part header & footer
+    \fancypagestyle{previous}
+    {
+        \commonhead{}
+        \fancyfoot{}
+        \fancyfoot[OC,EC]{\zihao{-5}\Roman{page}}
+        \pagenumbering{Roman}
+    }
+}
+{
+    \newcommand{\commonhead}
+    {
+        \fancyhead{}
+        \fancyhead[L]{\zihao{-5} \TitleTypeName}
+        \fancyhead[R]{\zihao{-5} \leftmark}
+        \renewcommand{\headrulewidth}{0.6pt}
+    }
+    \fancypagestyle{common}
+    {
+        \commonhead{}
+        \fancyfoot{}
+        \fancyfoot[OR,EL]{\zihao{-5} \thepage}
+    }
+    \fancypagestyle{previous}
+    {
+        %\fancyhead{}
+        \commonhead{}
+        \fancyfoot{}
+        \fancyfoot[OR,EL]{\zihao{-5}\Roman{page}}
+        % \renewcommand{\headrulewidth}{0pt}
+    }
+}
+
+% Explicitly remove plain page style
+\fancypagestyle{plain}
+{
+    \fancyhead{}
+    \fancyfoot{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Set default page styles
+\pagestyle{common}
+\tocloftpagestyle{previous}
+
+% TOC side pane fixup
+\bookmarksetup{
+  numbered,
+  open
+}
+
+% TOC title format
+\renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\bfseries}\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftloftitlefont}{\hfill\zihao{3}\bfseries}\renewcommand{\cftafterloftitle}{\hfill}
+\renewcommand{\cftlottitlefont}{\hfill\zihao{3}\bfseries}\renewcommand{\cftafterlottitle}{\hfill}
+
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{0pt}
+
+\setlength{\cftbeforeloftitleskip}{0pt}
+\setlength{\cftafterloftitleskip}{0pt}
+
+\setlength{\cftbeforelottitleskip}{0pt}
+\setlength{\cftafterlottitleskip}{0pt}
+
+% TOC entry format
+\cftpagenumbersoff{part}
+
+\renewcommand{\cftchapfont}         {\zihao{-4}}
+\renewcommand{\cftchapleader}       {\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftchappagefont}     {}
+\renewcommand{\cftsecfont}          {\zihao{-4}}
+\renewcommand{\cftsubsecfont}       {\zihao{-4}}
+\renewcommand{\cftsubsubsecfont}    {\zihao{-4}}
+
+\renewcommand{\cftfigdotsep}        {0.5}
+\renewcommand{\cfttabdotsep}        {0.5}
+\renewcommand{\cftchapdotsep}       {0.5}
+\renewcommand{\cftsecdotsep}        {0.5}
+\renewcommand{\cftsubsecdotsep}     {0.5}
+\renewcommand{\cftsubsubsecdotsep}  {0.5}
+
+\renewcommand{\cftchapnumwidth}       {1.5em}
+\renewcommand{\cftsecnumwidth}        {1.5em}
+\renewcommand{\cftsubsecnumwidth}     {1.5em}
+\renewcommand{\cftsubsubsecnumwidth}  {1.5em}
+
+\setlength{\cftchapindent}      {0em}
+\setlength{\cftsecindent}       {2em}
+\setlength{\cftsubsecindent}    {4em}
+\setlength{\cftsubsubsecindent} {6em}
+\setlength{\cftbeforechapskip}  {0em}
+
+% graduate template listoffigures/tables
+\ifthenelse{\equal{\Degree}{graduate}}
+{
+    % listoffigures
+    \newlength{\listoffiguresnamelen}
+    \renewcommand{\cftfigpresnum}{\figurename\enspace}
+    \settowidth{\listoffiguresnamelen}{\cftfigpresnum\cftfigaftersnum}
+    \addtolength{\cftfignumwidth}{\listoffiguresnamelen}
+
+    % listoftables
+    \newlength{\listoftablesnamelen}
+    \renewcommand{\cfttabpresnum}{\tablename\enspace}
+    \settowidth{\listoftablesnamelen}{\cfttabpresnum\cfttabaftersnum}
+    \addtolength{\cfttabnumwidth}{\listoftablesnamelen}
+}
+{}
+
+\newcommand{\coverstyle}
+{
+    \pagestyle{cover}
+}
+
+\newcommand{\prevstyle}
+{
+    \clearpage{}
+    \assignpagestyle{\chapter}{previous}
+    \thispagestyle{previous}
+    \pagestyle{previous}
+    \pagenumbering{Roman}
+    \setcounter{page}{1}
+    \numberingstyle{}
+}
+
+\newcommand{\bodystyle}
+{
+    \clearpage{}
+    \assignpagestyle{\chapter}{common}
+    \thispagestyle{common}
+    \pagestyle{common}
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+}
+
+\newcommand{\poststyle}
+{
+    \clearpage{}
+    \ifthenelse{\equal{\Degree}{graduate}}
+    {
+        \assignpagestyle{\chapter}{common}
+        \thispagestyle{common}
+        \pagestyle{common}
+    }
+    {
+        \assignpagestyle{\chapter}{empty}
+        \thispagestyle{empty}
+        \pagestyle{empty}
+    }
+}
+
+% Bib layout
+\setlength{\bibitemsep}{0ex}
+\setlength{\bibnamesep}{0ex}
+\setlength{\bibinitsep}{0ex}
